@@ -3,8 +3,15 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ProductLoader {
+    /**
+     * 
+     */
     public ProductLoader() {}
 
+    /**
+     * @param file
+     * @return
+     */
     public BinarySearchTree<Long> loadData(String file) {
         BinarySearchTree<Long> tree = new BinarySearchTree<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -39,6 +46,11 @@ public class ProductLoader {
         return tree;
     }
 
+    /**
+     * @param value
+     * @param defaultValue
+     * @return
+     */
     private double parseDoubleWithDefault(String value, double defaultValue) {
         if (value == null || value.trim().isEmpty()) {
             return defaultValue;

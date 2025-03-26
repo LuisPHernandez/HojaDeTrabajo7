@@ -1,16 +1,29 @@
 public class BinarySearchTree<E extends Comparable<E>> {
     // Atributos
+    /**
+     *
+     */
     private Node<E> treeRoot;
 
     // Métodos
+    /**
+     * 
+     */
     public BinarySearchTree() {
         treeRoot = null;
     }
 
+    /**
+     * @param newNode
+     */
     public void insert(Node<E> newNode) {
         this.insertRecursive(newNode, treeRoot); 
     }
     
+    /**
+     * @param newNode
+     * @param root
+     */
     private void insertRecursive(Node<E> newNode, Node<E> root) {
         if (root == null) {
             treeRoot = newNode;
@@ -33,6 +46,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * @param value
+     * @return
+     */
     public Node<E> search(E value) {
         return this.searchRecursive(treeRoot, value);
     }
@@ -55,4 +72,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
+    /**
+     * @return
+     */
+    public Node<E> getTreeRoot() {
+        return treeRoot;
+    }
 }
