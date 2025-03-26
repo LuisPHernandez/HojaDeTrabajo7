@@ -1,35 +1,17 @@
-public class ProductNode<E> implements Comparable<ProductNode<E>> {
+public class ProductNode<E extends Comparable<E>> extends Node<E> {
     // Atributos
-    private int SKU;
     private double priceRetail;
     private double priceCurrent;
-    private String productName;
+    private String Name;
     private String category;
-    private ProductNode<E> leftNode;
-    private ProductNode<E> rightNode;
 
     // Métodos
-    public ProductNode(int SKU, double priceRetail, double priceCurrent, String productName, String category) {
-        this.SKU = SKU;
+    public ProductNode(E comparableValue, double priceRetail, double priceCurrent, String Name, String category) {
+        super(comparableValue);
         this.priceRetail = priceRetail;
         this.priceCurrent = priceCurrent;
-        this.productName = productName;
+        this.Name = Name;
         this.category = category;
-        this.leftNode = null;
-        this.rightNode = null;
-    }
-
-    @Override
-    public int compareTo(ProductNode<E> other) {
-        return Integer.compare(this.SKU, other.getSKU());
-    }
-
-    public int getSKU() {
-        return SKU;
-    }
-
-    public void setSKU(int SKU) {
-        this.SKU = SKU;
     }
 
     public double getPriceRetail() {
@@ -48,12 +30,12 @@ public class ProductNode<E> implements Comparable<ProductNode<E>> {
         this.priceCurrent = priceCurrent;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return Name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getCategory() {
@@ -62,21 +44,5 @@ public class ProductNode<E> implements Comparable<ProductNode<E>> {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public ProductNode<E> getLeftNode() {
-        return leftNode;
-    }
-
-    public void setLeftNode(ProductNode<E> leftNode) {
-        this.leftNode = leftNode;
-    }
-
-    public ProductNode<E> getRightNode() {
-        return rightNode;
-    }
-
-    public void setRightNode(ProductNode<E> rightNode) {
-        this.rightNode = rightNode;
     }
 }
