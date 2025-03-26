@@ -1,10 +1,10 @@
-public class Node<E> implements Comparable<Node<E>> {
-    // Atributos
+public class Node<E extends Comparable<E>> implements Comparable<Node<E>> {
+    // Attributes
     private E comparableValue;
     private Node<E> leftNode;
     private Node<E> rightNode;
 
-    // Métodos
+    // Constructor
     public Node(E comparableValue) {
         this.comparableValue = comparableValue;
         this.leftNode = null;
@@ -13,18 +13,18 @@ public class Node<E> implements Comparable<Node<E>> {
 
     @Override
     public int compareTo(Node<E> other) {
-        return compare(this.comparableValue, other.getComparableValue());
+        return this.comparableValue.compareTo(other.getComparableValue());
     }
 
     public int compareValueTo(E comparableValue) {
-        return compare(this.comparableValue, comparableValue);
+        return this.comparableValue.compareTo(comparableValue);
     }
 
     public E getComparableValue() {
         return this.comparableValue;
     }
 
-    public void setcomparableValue(E comparableValue) {
+    public void setComparableValue(E comparableValue) {
         this.comparableValue = comparableValue;
     }
 
