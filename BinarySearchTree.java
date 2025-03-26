@@ -8,16 +8,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public void insert(Node<E> newNode) {
-        if (this.treeRoot == null) {
-            this.treeRoot = newNode;
-        }
-        else {
-            this.insertRecursive(newNode, treeRoot);
-        }  
+        this.insertRecursive(newNode, treeRoot); 
     }
     
     private void insertRecursive(Node<E> newNode, Node<E> root) {
-        if (newNode.compareTo(root) <= 0) {
+        if (root == null) {
+            treeRoot = newNode;
+        }
+        else if (newNode.compareTo(root) <= 0) {
             if (root.getLeftNode() == null) {
                 root.setLeftNode(newNode);
             }
@@ -36,33 +34,25 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public Node<E> search(E value) {
-        if (this.treeRoot == null) {
+        return this.searchRecursive(treeRoot, value);
+    }
+
+    private Node<E> searchRecursive(Node<E> current, E value) {
+        if (current == null) {
             return null;
         }
-        else if (this.treeRoot.getComparableValue() == value) {
-            return this.treeRoot;
-        }
+
+        int compareResult = value.compareTo(current.getComparableValue());
+
+        if (compareResult == 0) {
+            return current;
+        } 
+        else if (compareResult < 0) {
+            return searchRecursive(current.getLeftNode(), value);
+        } 
         else {
-            return this.searchRecursive(value, this.treeRoot);
+            return searchRecursive(current.getRightNode(), value);
         }
     }
 
-    private Node<E> searchRecursive(E value, Node<E> root) {
-        if (value <= root.getComparableValue()) {
-            if (root.getLeftNode().getComparableValue() == value) {
-                return root.getLeftNode();
-            }
-            else {
-                return this.searchRecursive(value, root.getLeftNode());
-            }
-        }
-        else {
-            if (root.getRightNode().getComparableValue() == value) {
-                return root.getRightNode();
-            }
-            else {
-                return this.searchRecursive(value, root.getRightNode());
-            }
-        }
-    }
 }
